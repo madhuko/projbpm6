@@ -2,3 +2,4 @@ flask
 sqlite3
 pandas
 io
+streamlit
