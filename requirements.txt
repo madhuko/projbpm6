@@ -1,5 +1,4 @@
-altair
-numpy
+flask
+sqlite3
 pandas
-pydeck
-streamlit
+io

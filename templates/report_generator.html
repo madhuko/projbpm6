@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+  {% block title %}Report Generator{% endblock %}
+  {% block content %}
+    <div class="container">
+        <h1>Report Generator</h1>
+        <form method="POST" action="/generate_report">
+            <div class="form-group">
+                <label for="bankname">Bank Name:</label>
+                <select class="form-control" id="bankname" name="bankname" autofocus>
+                    {% for bank in banklist %}
+                      {% set bank = bank[0] %}
+                      <option value="{{ bank }}">{{ bank }}</option>
+                    {% endfor %}
+                  </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Report</button>
+            <hr>
+            <div class="form-group">
+                <label>Select Tables to Include:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="contacts" name="tables[]" value="contacts" checked>
+                    <label class="form-check-label" for="contact">Contact Detail</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="communication_log" name="tables[]" value="communication_log" checked>
+                    <label class="form-check-label" for="communication_log">Communication Log</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="special_remarks" name="tables[]" value="special_remarks" checked>
+                    <label class="form-check-label" for="special_remarks">Special Remarks</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="meeting" name="tables[]" value="meeting" checked>
+                    <label class="form-check-label" for="meeting">Meeting</label>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    {% endblock %}

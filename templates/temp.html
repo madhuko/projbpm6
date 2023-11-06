@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+  {% block title %}Contact Details{% endblock %}
+  {% block content %}
+
+<div class="col-md-8">
+    <h2 class="text-center">Transaction List</h2>
+
+    <table class="table table-hover table-striped table-bordered" id="dataTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Bank Name</th>
+          <th>Person Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Dept</th>
+          <th>Is Primary</th>
+          <!-- Add other table column headers here -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in contact_data %}
+        <tr>
+          <td>{{ record[0] }}</td>
+          <td>{{ record[6] }}</td>
+          <td>{{ record[1] }}</td>
+          <td>{{ record[2] }}</td>
+          <td>{{ record[3] }}</td>
+          <td>{{ record[4] }}</td>
+          <td>{{ record[5] }}</td>
+          <!-- Add other table data here -->
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>

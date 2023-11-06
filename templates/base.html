@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <style>
+    /* Reduce font size for the table */
+    table {
+        font-size: 14px;
+    }
+    
+    /* Optionally reduce font size for specific table elements */
+    th, td {
+        font-size: 14px;
+    }
+</style>
+
+  
+  <script>
+    $(document).ready(function() {
+        var table = $('#dataTable').DataTable({
+            "order": [[0, "desc"]],
+           autoWidth: true,
+        });
+
+        $('#globalSearch').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+    });
+</script>
+
+  
+
+
+  <title>{% block title %}{% endblock %}</title>  
+</head>
+
+<body>
+  <style>
+    .navbar-custom {
+        background: linear-gradient(to right, #480de7, #480de7);
+        color: white;
+    }
+
+    .navbar-brand {
+        color: white;
+    }
+
+    .navbar-nav .nav-link {
+        color: white;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: rgb(255, 255, 255);
+        background-color: rgba(0, 0, 0, 0.904);
+    }
+    .navbar-brand .nav-link:hover {
+        color: rgb(255, 255, 255);
+        background-color: rgba(0, 0, 0, 0.904);
+    }
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="{{ url_for('home') }}">
+            <img src="/static/logo_bigger.png" alt="Logo" height="50">
+            Nepal Rastra Bank
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/add_bank"><i class="fas fa-university"></i> Manage Bank Record</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add_contact"><i class="fas fa-address-book"></i> Manage Contact Record</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/communication_log"><i class="fas fa-comments"></i> Manage Communication Log</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add_meeting"><i class="fas fa-calendar-alt"></i> Manage Meeting Record</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add_txn"><i class="fas fa-exchange-alt"></i> Transaction Record</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/report_generator"><i class="fas fa-file-alt"></i> Generate Report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/manage_special_remarks"><i class="fas fa-sticky-note"></i> Manage Special Remarks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/query"><i class="fas fa-database"></i> Custom Query</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+ 
+    {% block content %}
+    <!-- Add your page content here -->
+    {% endblock %}
+</body>
+
+</html>

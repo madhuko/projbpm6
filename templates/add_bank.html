@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Add Bank{% endblock %}
+{% block content %}
+
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="text-center">Existing Bank List</h2>
+
+      <table class="table table-hover table-striped table-bordered table-responsive" id="dataTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Init</th>
+            <th>Bank Name</th>
+            <th>CBS</th>
+            <th>Team Formation</th>
+            <th>Progress</th>
+            <th style="width: 12%">Class</th>
+            <th>BPM5 Auto or Manual</th>
+            <th>ITRS on INR</th>
+            <!-- Add other table column headers here -->
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in records %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1]}}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+            <td>{{ record[5] }}</td>
+            <td>{{ record[6] }}</td>
+            <td>{{ record[7] }}</td>
+            <td>{{ record[8] }}</td>
+            <!-- Add other table data here -->
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-4">
+      <h2 class="text-center">Add New Record</h2>
+      <div class="card p-4">
+        <form method="POST">
+          <div class="form-group">
+            <label for="bank_id">Bank ID:</label>
+            <input type="text" class="form-control" id="bank_id" name="bank_id">
+          </div>
+          <div class="form-group">
+            <label for="bank_id">Init:</label>
+            <input type="text" class="form-control" id="Init" name="Init">
+          </div>
+          <div class="form-group">
+            <label for="bank_name">Bank Name:</label>
+            <input type="text" class="form-control" id="bank_name" name="bank_name">
+          </div>
+          <div class="form-group">
+            <label for="cbs">CBS:</label>
+            <input type="text" class="form-control" id="cbs" name="cbs">
+          </div>
+          <div class="form-group">
+            <label for="team_formation">Team Formation:</label>
+            <input type="checkbox" class="form-control" id="team_formation" name="team_formation">
+          </div>
+          <div class="form-group">
+            <label for="progress">Progress:</label>
+            <input type="text" class="form-control" id="progress" name="progress">
+          </div>
+          <div class="form-group">
+            <label for="expected_timeline">Expected Timeline:</label>
+            <input type="text" class="form-control" id="expected_timeline" name="expected_timeline">
+          </div>
+          <div class="form-group">
+            <label for="bpm5_auto_or_manual">BPM5 Auto or Manual:</label>
+            <input type="text" class="form-control" id="bpm5_auto_or_manual" name="bpm5_auto_or_manual">
+          </div>
+          <div class="form-group">
+            <label for="itrs_on_inr">ITRS on INR:</label>
+            <input type="checkbox" class="form-control" id="itrs_on_inr" name="itrs_on_inr">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

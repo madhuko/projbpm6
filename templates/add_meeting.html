@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+  {% block title %}Meetings{% endblock %}
+  {% block content %}
+  
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="text-center">Meeting entries</h2>
+
+      <table class="table table-hover table-striped table-bordered" id="dataTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th style="width: 15%">BankName</th>
+            <th>Participants</th>
+            <th>Meeting Summary</th>
+            <th>Our Concern</th>
+            <th>Their Concern</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in meeting_data %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1]}}</td>
+            <td style="width: 15%; word-wrap: break-word;">{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+            <td>{{ record[5] }}</td>
+            <td>{{ record[6] }}</td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="col-md-4">
+      <h2 class="text-center">Add New Record</h2>
+      <div class="card p-4">
+        <form method="POST" action="/add_meeting">
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="bankname">Bank Name:</label>
+                <select class="form-control" id="bankname" name="bankname">
+                  {% for bank in banklist %}
+                  {% set bank = bank[0] %} <!-- Extract the value from the tuple -->
+    
+                    <option value="{{ bank }}">{{ bank }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            <div class="form-group">
+                <label for="participants">Participants:</label>
+                <textarea class="form-control" id="participants" name="participants" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="meeting_summary">Meeting Summary:</label>
+                <textarea class="form-control" id="meeting_summary" name="meeting_summary" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="our_concern">Our Concern:</label>
+                <textarea class="form-control" id="our_concern" name="our_concern" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="their_concern">Their Concern:</label>
+                <textarea class="form-control" id="their_concern" name="their_concern" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

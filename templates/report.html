@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Report{% endblock %}
+{% block content %}
+<!-- <h1>Bank Report</h1> -->
+<div class="container">
+  <h2>{{bankdata[0][2]}}</h2>
+  <table class="table table-sm table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Bank ID</th>
+        <th>CBS</th>
+        <th>Team Formation</th>
+        <th>Progress</th>
+        <th style="width: 12%">Class</th>
+        <th>BPM5 Auto or Manual</th>
+        <th>ITRS on INR</th>
+        <!-- Add other table column headers here -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in bankdata %}
+      <tr>
+        <td>{{ record[0] }}</td>
+        <td>{{ record[3]}}</td>
+        <td>{{ record[4]}}</td>
+        <td>{{ record[5] }}</td>
+        <td>{{ record[6] }}</td>
+        <td>{{ record[7] }}</td>
+        <td>{{ record[8] }}</td>
+        <!-- Add other table data here -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% for table_name, table_data in table_dict.items() %}
+  <div>
+    <h2>{{ table_name }}</h2>
+    {% if table_data %}
+    <table class="table table-sm table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          {% for column_header in table_data[0].keys() %}
+          {% if column_header not in ['ID','id', 'bankname'] %}
+          <th>{{ column_header }}</th>
+          {% endif %}
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in table_data %}
+        <tr>
+          {% for column_header, value in row.items() %}
+          {% if column_header not in ['ID','id', 'bankname'] %}
+          <td>{{ value }}</td>
+          {% endif %}
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="no-results">No results found for {{ table_name }}.</p>
+    {% endif %}
+  </div>
+  {% endfor %}
+  <table class="table table-bordered  table-hover table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>Year</th>
+        <th>Month</th>
+        <th>NRB34</th>
+        <th>remarks_on_34</th>
+        <th>response_on_34</th>
+        <th>NRB46</th>
+        <th>remarks_on_46</th>
+        <th>response_on_46</th>
+        <!-- Add other table column headers here -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in transaction_record %}
+      <tr>
+        <td>{{ record[2] }}</td>
+        <td>{{ record[3]}}</td>
+        <td>{{ record[4]}}</td>
+        <td>
+          <pre>{{ record[5] }}</pre>
+        </td>
+        <td>
+          <pre>{{ record[6] }}</pre>
+        </td>
+        <td>{{ record[7] }}</td>
+        <td>
+          <pre>{{ record[8] }}</pre>
+        </td>
+        <td>
+          <pre>{{ record[9] }}</pre>
+        </td>
+        <!-- Add other table data here -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+</div>
+{% endblock %}

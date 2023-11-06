@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-7">
+        <h3>Latest Communication Log Records</h3>
+        <table class="table table-hover table-striped table-bordered table-compact" id="dataTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Bank Name</th>
+                <th style="width: auto;">Summary</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for record in latest_communication_logs %}
+              <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1]}}</td>
+                <td>{{ record[2] }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    <div class="col-md-2">
+        <h3>Latest Transaction Records</h3>
+        <ul>
+            {% for transaction_record in latest_transaction_records %}
+            <li>{{ transaction_record }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="col-md-3">
+        <h3 class="text-center">Update Wizard</h3>
+        <div class="card p-4">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="tablename">Table Name:</label>
+                    <select class="form-control" id="tablename" name="tablename">
+                        {% for tl in tablename %}
+                        {% set tl = tl[0] %} #Extract the value from the tuple
+
+                        <option value="{{ tl }}">{{ tl }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

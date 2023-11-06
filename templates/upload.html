@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block content %}
+<h1>Excel Viewer</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx, .xls" />
+        <input type="submit" value="Upload" />
+    </form>
+{% endblock %}
